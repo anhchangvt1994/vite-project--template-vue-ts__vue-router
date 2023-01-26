@@ -9,15 +9,16 @@
     "build:esm": "vue-tsc && cross-env ESM=true vite build",
     "preview": "vite preview",
     "prettier": "tsc --noEmit && prettier src/**/*.{vue,js,ts}{,x} --no-error-on-unmatched-pattern --check",
-		"lint": "tsc --noEmit && eslint src/**/*.{vue,js,ts}{,x} --no-error-on-unmatched-pattern --ignore-pattern node_modules/",
-		"lint:fix": "npm run lint -- --fix",
-		"prettier:fix": "npm run prettier -- --write",
-		"format": "npm run prettier:fix && npm run lint:fix",
-		"prepare": "git config core.autocrlf false && npx husky install",
-		"pre-commit": "lint-staged"
+    "lint": "tsc --noEmit && eslint src/**/*.{vue,js,ts}{,x} --no-error-on-unmatched-pattern --ignore-pattern node_modules/",
+    "lint:fix": "npm run lint -- --fix",
+    "prettier:fix": "npm run prettier -- --write",
+    "format": "npm run prettier:fix && npm run lint:fix",
+    "prepare": "git config core.autocrlf false && npx husky install",
+    "pre-commit": "lint-staged"
   },
   "dependencies": {
-    "vue": "^3.2.45"
+    "vue": "^3.2.45",
+    "vue-router": "^4.1.6"
   },
   "devDependencies": {
     "@commitlint/config-conventional": "^17.4.2",

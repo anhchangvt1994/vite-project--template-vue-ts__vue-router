@@ -43,7 +43,14 @@ export default defineConfig(async ({ mode }) => {
 				imports: [
 					// presets
 					'vue',
-					'vue-router',
+					{
+						'vue-router': [
+							'createRouter',
+							'createWebHistory',
+							'useRoute',
+							'useRouter',
+						],
+					},
 				],
 				dts: './config/auto-imports.d.ts',
 				eslintrc: {
@@ -54,7 +61,7 @@ export default defineConfig(async ({ mode }) => {
 			...(mode === 'development'
 				? [
 						alias({
-							entries: aliasExternal?.entries,
+							entries: aliasExternal.entries || {},
 						}),
 				  ]
 				: []),
@@ -75,11 +82,7 @@ export default defineConfig(async ({ mode }) => {
 		resolve: {
 			alias: {
 				...resolve.alias,
-				...(mode === 'production'
-					? {
-							...aliasExternal?.entries,
-					  }
-					: {}),
+				...aliasExternal.entries,
 			},
 		},
 		envDir: './config/env',
@@ -87,7 +90,7 @@ export default defineConfig(async ({ mode }) => {
 		optimizeDeps: {
 			...(aliasExternal
 				? {
-						exclude: Object.keys(aliasExternal),
+						exclude: Object.keys(aliasExternal.entries || {}),
 				  }
 				: {}),
 		},
