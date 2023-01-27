@@ -1,6 +1,10 @@
 export default {
-  prefix: "test",
-  data: {
-    data: "test",
-  },
-};
+	prefix: 'test',
+	data: {
+		test: {
+			test: {
+				name: 'trường',
+			},
+		},
+	},
+}

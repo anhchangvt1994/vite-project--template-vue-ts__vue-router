@@ -22,5 +22,9 @@ interface Env {
     ROUTER_NOT_FOUND_NAME:    string;
     ROUTER_NOT_FOUND_PATH:    string;
     GENERAL_GREETING:         string;
-    TEST_DATA:                string;
+    TEST_TEST_TEST:           TestTestTest;
+}
+
+interface TestTestTest {
+    name: string;
 }
