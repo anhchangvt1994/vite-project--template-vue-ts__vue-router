@@ -169,7 +169,7 @@ Suspense is a loading resolver solution in Vue 3.x. Imagine that your page is lo
 
 In this section, I will discuss about handling the loading page when using lazy-loading routes.
 
-Continue the probplem above, we can resolve in two ways
+Continue the problem above, we can resolve in two ways
 
 1. Listen on Route and Listen on Hook
    Step by step like this
@@ -256,7 +256,7 @@ Some keywords for researching:
 
 <h3 id="protect">Protect on route</h3>
 
-You can product route by using the [meta options and use beforeEach event to execute it](https://router.vuejs.org/guide/advanced/meta.html#route-meta-fields).
+You can protect route by using the [meta options and use beforeEach event to execute it](https://router.vuejs.org/guide/advanced/meta.html#route-meta-fields).
 Imagine that you have a route only allow V.I.P user, then you need to prevent other user enter that V.I.P route. In this case you can use protect route to resolve it. See code below
 
 ```javascript
