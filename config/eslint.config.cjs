@@ -1,6 +1,6 @@
 module.exports = {
 	root: true,
-	ignorePatterns: ['webpack.config.js', 'env/**/*', 'config/**/*'],
+	ignorePatterns: ['vite.config.ts', 'env/**/*', 'config/**/*', 'dist/**/*'],
 	env: {
 		browser: true,
 		es6: true,
@@ -30,7 +30,7 @@ module.exports = {
 		},
 		ecmaVersion: 'latest',
 		sourceType: 'module',
-		project: './tsconfig.json',
+		project: ['./tsconfig.json', './vite.config.ts'],
 	},
 	rules: {
 		'linebreak-style': 'off',
