@@ -51,5 +51,13 @@
 		&[src=''] {
 			display: none;
 		}
+
+		// NOTE - css trick to hide alt text
+		&:first {
+			position: absolute;
+			left: -9999px;
+			top: -9999px;
+			z-index: -100;
+		}
 	}
 </style>
