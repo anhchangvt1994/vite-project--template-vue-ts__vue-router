@@ -1,11 +1,12 @@
 <script setup>
 	import { UserInfoState } from 'store/UserStore'
+
 	const loginPageName = import.meta.env.ROUTER_LOGIN_NAME
 </script>
 
 <template>
 	<header class="header">
-		<template v-if="UserInfoState.email">
+		<div v-if="UserInfoState.email" class="header-right">
 			<span>{{ UserInfoState.email }}</span> |
 			<span
 				style="cursor: pointer"
@@ -17,7 +18,7 @@
 				"
 				>Logout</span
 			>
-		</template>
+		</div>
 		<router-link v-else :to="{ name: loginPageName }"> Login </router-link>
 	</header>
 </template>

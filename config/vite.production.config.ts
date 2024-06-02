@@ -9,8 +9,9 @@ export default (): UserConfig => {
 			NormalSplitChunks([
 				/node_modules\/([^/]+)/,
 				/utils\/([^/]+)/,
+				/composable\/([^/]+)/,
 				/store\/([^/]+)/,
-				/config\/([^/]+)/,
+				/app\/([^/]+)/,
 			]),
 		],
 	}

@@ -14,7 +14,7 @@
 	"include": ["src/**/*.js", "src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"],
 	"compilerOptions": {
 		"useDefineForClassFields": true,
-		"lib": ["ESNext", "DOM"],
+		"lib": ["ESNext", "DOM.Iterable", "DOM"],
 		// NOTE - Set what module will be built for project (es, commonjs) (what is compile way will be chosen for import / export syntax)
 		// https://www.typescriptlang.org/tsconfig#module
 		// https://stackoverflow.com/questions/41993811/understanding-target-and-module-in-tsconfig
@@ -38,10 +38,11 @@
 		"paths": {
 			"@/*": ["../*"],
 			"assets/*": ["assets/*"],
-			"config/*": ["config/*"],
+			"app/*": ["app/*"],
 			"pages/*": ["pages/*"],
 			"components/*": ["components/*"],
 			"utils/*": ["utils/*"],
+			"composable/*": ["composable/*"],
 			"store/*": ["store/*"]
 		},
 

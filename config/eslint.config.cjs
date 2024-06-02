@@ -22,7 +22,7 @@ module.exports = {
 		'plugin:import/warnings',
 		'prettier',
 	],
-	plugins: ['@typescript-eslint/eslint-plugin'],
+	// plugins: ['@typescript-eslint/eslint-plugin'],
 	parser: 'vue-eslint-parser',
 	parserOptions: {
 		parser: {

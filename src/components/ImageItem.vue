@@ -43,12 +43,12 @@
 
 	.image-item {
 		display: block;
-		background-color: #fdfffc;
 		width: 100%;
 		height: 100%;
 		object-fit: contain;
 
-		&[src=''] {
+		&[src=''],
+		&[src] {
 			display: none;
 		}
 
