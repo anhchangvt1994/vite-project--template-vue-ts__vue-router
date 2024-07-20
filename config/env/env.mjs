@@ -19,6 +19,10 @@ const ENV_OBJECT_DEFAULT = {
 	IPV4_HOST: String(),
 	IO_HOST: String(),
 }
+let ENV_VARIABLE_EXPORTER = ''
+const ENV_VARIABLE_EXPORTER_FOR_AUTO_IMPORT = {
+	'@/config/env/ENV.js': [],
+}
 const ENV_OBJ_WITH_JSON_STRINGIFY_VALUE = { ...ENV_OBJECT_DEFAULT }
 
 const generateObjectFormatted = (obj, prefix) => {
@@ -33,14 +37,17 @@ const generateObjectFormatted = (obj, prefix) => {
 
 		if (typeof obj[key] === 'object' && !obj[key].length) {
 			for (const childKey in obj[key]) {
-				setValueForObject(
-					ENV_OBJECT_DEFAULT,
-					tmpKey + '_' + childKey.toUpperCase(),
+				const envKey = tmpKey + '_' + childKey.toUpperCase()
+				ENV_VARIABLE_EXPORTER += `export const ${envKey}=${JSON.stringify(
 					obj[key][childKey]
+				)};`
+				ENV_VARIABLE_EXPORTER_FOR_AUTO_IMPORT['@/config/env/ENV.js'].push(
+					envKey
 				)
+				setValueForObject(ENV_OBJECT_DEFAULT, envKey, obj[key][childKey])
 				setValueForObject(
 					ENV_OBJ_WITH_JSON_STRINGIFY_VALUE,
-					tmpKey + '_' + childKey.toUpperCase(),
+					envKey,
 					JSON.stringify(obj[key][childKey])
 				)
 			}
@@ -75,11 +82,17 @@ const promiseENVWriteFileSync = new Promise(function (resolve) {
 	try {
 		fs.writeFileSync(
 			`${PROJECT_PATH}/.env`,
-			ObjToEnvConverter(ENV_OBJECT_DEFAULT)
+			ObjToEnvConverter(ENV_OBJ_WITH_JSON_STRINGIFY_VALUE)
 		)
 		fs.writeFileSync(
 			`${PROJECT_PATH}/env.json`,
 			JSON.stringify(ENV_OBJ_WITH_JSON_STRINGIFY_VALUE)
+		)
+		fs.writeFileSync(
+			`${PROJECT_PATH}/ENV.js`,
+			`${ENV_VARIABLE_EXPORTER}export const ENV_VARIABLE_EXPORTER_FOR_AUTO_IMPORT=${JSON.stringify(
+				ENV_VARIABLE_EXPORTER_FOR_AUTO_IMPORT
+			)}`
 		)
 
 		resolve('done')

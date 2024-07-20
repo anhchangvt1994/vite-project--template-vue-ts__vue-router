@@ -35,7 +35,7 @@
 				v-for="item in moduleList"
 				:key="item.title"
 				:to="{
-					name: 'ContentPage',
+					name: ROUTER_CONTENT_NAME,
 					params: {
 						id: item.id,
 						title: getSlug(item.title),
@@ -44,9 +44,6 @@
 			>
 				<div class="module-card">
 					<ImageItem src="sadfasdf" :caption="item.title" />
-					<div class="module-card__title">
-						{{ item.title }}
-					</div>
 					<!-- .module-card__title -->
 					<!-- .module-card__image-outer -->
 				</div>

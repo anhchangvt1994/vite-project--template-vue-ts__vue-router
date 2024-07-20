@@ -1,20 +1,20 @@
-import path from 'path'
-import fs from 'fs'
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
 import alias from '@rollup/plugin-alias'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
-import AutoImport from 'unplugin-auto-import/vite'
-import tailwind from 'tailwindcss'
+import vue from '@vitejs/plugin-vue'
 import autoprefixer from 'autoprefixer'
+import fs from 'fs'
+import path from 'path'
+import tailwind from 'tailwindcss'
+import AutoImport from 'unplugin-auto-import/vite'
+import { defineConfig } from 'vite'
 import EnvironmentPlugin from 'vite-plugin-environment'
+import { ENV_VARIABLE_EXPORTER_FOR_AUTO_IMPORT } from './config/env/ENV'
 
 import {
 	ENV_OBJECT_DEFAULT,
 	promiseENVWriteFileSync,
 } from './config/env/env.mjs'
 import { generateDTS } from './config/types/dts-generator.mjs'
-import { getPort } from './config/utils/PortHandler'
 
 const resolve = resolveTsconfigPathsToAlias()
 
@@ -83,6 +83,7 @@ export default defineConfig(async ({ mode }) => {
 							'useSentenceCase',
 						],
 						'utils/CookieHelper.ts': ['getCookie', 'setCookie', 'deleteCookie'],
+						...ENV_VARIABLE_EXPORTER_FOR_AUTO_IMPORT,
 					},
 				],
 				dts: './config/auto-imports.d.ts',

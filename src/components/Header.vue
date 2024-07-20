@@ -1,11 +1,36 @@
 <script setup>
-	import { UserInfoState } from 'store/UserStore'
+	import { UserInfoState } from 'app/store/UserStore'
 
-	const loginPageName = import.meta.env.ROUTER_LOGIN_NAME
+	const router = useRoute()
 </script>
 
 <template>
 	<header class="header">
+		<div class="header-left">
+			<router-link
+				:to="{
+					name: router.name,
+					params: {
+						...router.params,
+						locale: 'en-us',
+					},
+				}"
+			>
+				EN
+			</router-link>
+			|
+			<router-link
+				:to="{
+					name: router.name,
+					params: {
+						...router.params,
+						locale: 'vi-vn',
+					},
+				}"
+			>
+				VI
+			</router-link>
+		</div>
 		<div v-if="UserInfoState.email" class="header-right">
 			<span>{{ UserInfoState.email }}</span> |
 			<span
@@ -19,7 +44,7 @@
 				>Logout</span
 			>
 		</div>
-		<router-link v-else :to="{ name: loginPageName }"> Login </router-link>
+		<router-link v-else :to="{ name: ROUTER_LOGIN_NAME }"> Login </router-link>
 	</header>
 </template>
 
