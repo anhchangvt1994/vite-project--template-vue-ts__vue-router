@@ -8,13 +8,13 @@ import tailwind from 'tailwindcss'
 import AutoImport from 'unplugin-auto-import/vite'
 import { defineConfig } from 'vite'
 import EnvironmentPlugin from 'vite-plugin-environment'
-import { ENV_VARIABLE_EXPORTER_FOR_AUTO_IMPORT } from './config/env/ENV'
 
 import {
 	ENV_OBJECT_DEFAULT,
 	promiseENVWriteFileSync,
 } from './config/env/env.mjs'
 import { generateDTS } from './config/types/dts-generator.mjs'
+import { ENV_VARIABLE_EXPORTER_FOR_AUTO_IMPORT } from './config/env/ENV_AUTO_IMPORT.mjs'
 
 const resolve = resolveTsconfigPathsToAlias()
 

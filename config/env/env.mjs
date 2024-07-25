@@ -21,7 +21,7 @@ const ENV_OBJECT_DEFAULT = {
 }
 let ENV_VARIABLE_EXPORTER = ''
 const ENV_VARIABLE_EXPORTER_FOR_AUTO_IMPORT = {
-	'@/config/env/ENV.js': [],
+	'@/config/env/ENV_AUTO_IMPORT.mjs': [],
 }
 const ENV_OBJ_WITH_JSON_STRINGIFY_VALUE = { ...ENV_OBJECT_DEFAULT }
 
@@ -41,9 +41,9 @@ const generateObjectFormatted = (obj, prefix) => {
 				ENV_VARIABLE_EXPORTER += `export const ${envKey}=${JSON.stringify(
 					obj[key][childKey]
 				)};`
-				ENV_VARIABLE_EXPORTER_FOR_AUTO_IMPORT['@/config/env/ENV.js'].push(
-					envKey
-				)
+				ENV_VARIABLE_EXPORTER_FOR_AUTO_IMPORT[
+					'@/config/env/ENV_AUTO_IMPORT.mjs'
+				].push(envKey)
 				setValueForObject(ENV_OBJECT_DEFAULT, envKey, obj[key][childKey])
 				setValueForObject(
 					ENV_OBJ_WITH_JSON_STRINGIFY_VALUE,
@@ -54,6 +54,12 @@ const generateObjectFormatted = (obj, prefix) => {
 
 			delete obj[key]
 		} else {
+			ENV_VARIABLE_EXPORTER += `export const ${tmpKey}=${JSON.stringify(
+				obj[key]
+			)};`
+			ENV_VARIABLE_EXPORTER_FOR_AUTO_IMPORT[
+				'@/config/env/ENV_AUTO_IMPORT.mjs'
+			].push(tmpKey)
 			setValueForObject(ENV_OBJECT_DEFAULT, tmpKey, obj[key])
 			setValueForObject(
 				ENV_OBJ_WITH_JSON_STRINGIFY_VALUE,
@@ -89,7 +95,7 @@ const promiseENVWriteFileSync = new Promise(function (resolve) {
 			JSON.stringify(ENV_OBJ_WITH_JSON_STRINGIFY_VALUE)
 		)
 		fs.writeFileSync(
-			`${PROJECT_PATH}/ENV.js`,
+			`${PROJECT_PATH}/ENV_AUTO_IMPORT.mjs`,
 			`${ENV_VARIABLE_EXPORTER}export const ENV_VARIABLE_EXPORTER_FOR_AUTO_IMPORT=${JSON.stringify(
 				ENV_VARIABLE_EXPORTER_FOR_AUTO_IMPORT
 			)}`
